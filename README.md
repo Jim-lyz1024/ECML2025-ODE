@@ -5,11 +5,16 @@
 Most domain generalization methods focus on learning domain-invariant knowledge from source domains, neglecting the value of domain-specific knowledge, which, though unique to each source domain, can also improve the model's generalizability to unseen domains. To fill this gap, we propose the dOmain Description-guided Experts (ODE) framework, which leverages domain description to guide the utilization of domain-specific knowledge during both training and inference phases. Specifically, the domain descriptions are formulated as prompts incorporating domain names. During training, ODE constructs multiple domain experts, each specializing in a specific source domain. These domain experts leverage domain descriptions to facilitate the learning of domain-specific knowledge through text-image contrastive learning. By sharing a frozen, pretrained backbone network while only training the domain experts, ODE preserves domain-invariant knowledge while capturing unique domain knowledge. During inference, ODE computes the similarities between target and source domain descriptions to determine the relevance of each source domain to the unseen target domain. It then leverages domain-specific knowledge from the domain with the highest similarity to facilitate the inference. Moreover, we propose a strategy that allows ODE to integrate domain-specific knowledge from multiple domains, further improving generalization performance. Experiments across seven benchmark datasets demonstrate the effectiveness of ODE, setting a new benchmark of 95.5\% average accuracy on the PACS dataset.
 
 ## Baselines
-DG approachs:
-- ERM
+Domain Generalization approachs:
+- ERM - Empirical Risk Minimization
 - 2018 - CrossGrad - [Generalizing Across Domains via Cross-Gradient Training](https://openreview.net/forum?id=r1Dx7fbCW)
+- 2018 - MLDG -  [Learning to Generalize: Meta-Learning for Domain Generalization](https://arxiv.org/abs/1710.03463)
+- 2018 - MMD -  [Domain Generalization with Adversarial Feature Learning](https://openaccess.thecvf.com/content_cvpr_2018/papers/Li_Domain_Generalization_With_CVPR_2018_paper.pdf)
+- 2019 - IRM -  [Invariant risk minimization](https://arxiv.org/abs/1907.02893)
 - 2020 - DDAIG - [Deep Domain-Adversarial Image Generation for Domain Generalization](https://ojs.aaai.org/index.php/AAAI/article/view/7003)
+- 2020 - RSC - [Self-Challenging Improves Cross-Domain Generalization](https://www.ecva.net/papers/eccv_2020/papers_ECCV/papers/123470120.pdf)
 - 2021 - MixStyle - [Domain Generalization with MixStyle](https://arxiv.org/abs/2104.02008#)
+- 2021 - MLT - [Domain Generalization by Marginal Transfer Learning](https://jmlr.csail.mit.edu/papers/volume22/17-679/17-679.pdf)
 - 2022 - DomainMix - [Dynamic Domain Generalization](https://arxiv.org/abs/2205.13913)
 - 2022 - EFDMix - [Exact Feature Distribution Matching for Arbitrary Style Transfer and Domain Generalization](https://openaccess.thecvf.com/content/CVPR2022/html/Zhang_Exact_Feature_Distribution_Matching_for_Arbitrary_Style_Transfer_and_Domain_CVPR_2022_paper.html)
 - 2024 - SSPL - [Symmetric Self-Paced Learning for Domain Generalization](https://ojs.aaai.org/index.php/AAAI/article/view/29639)
