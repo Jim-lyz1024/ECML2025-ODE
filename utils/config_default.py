@@ -135,9 +135,9 @@ def get_cfg_default():
     _C.MODEL.DODGE = CN()
     _C.MODEL.DODGE.BACKBONE = "ViT-B/32"
     
-    # ODE
-    _C.MODEL.ODE = CN()
-    _C.MODEL.ODE.BACKBONE = "ViT-B/32"
+    # DIVE
+    _C.MODEL.DIVE = CN()
+    _C.MODEL.DIVE.BACKBONE = "ViT-B/32"
 
     # ERM
     _C.MODEL.ERM = CN()

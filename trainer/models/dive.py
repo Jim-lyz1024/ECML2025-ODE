@@ -31,9 +31,9 @@ class CustomCLIP(nn.Module):
         self.cfg = cfg
         self.image_encoder = clip_model.visual
         self.logit_scale = clip_model.logit_scale
-        if self.cfg.MODEL.ODE.BACKBONE == "RN50":
+        if self.cfg.MODEL.DIVE.BACKBONE == "RN50":
             adapter_dim = 1024
-        elif self.cfg.MODEL.ODE.BACKBONE == "ViT-B/32":
+        elif self.cfg.MODEL.DIVE.BACKBONE == "ViT-B/32":
             adapter_dim = 512
         self.adapters = nn.ModuleList(
             [
@@ -147,19 +147,19 @@ class CustomCLIP(nn.Module):
     
     
 @MODEL_REGISTRY.register()
-class ODE(Trainer):
+class DIVE(Trainer):
     def build_model(self):
         # domain_names = self.data_manager.dataset.domains
         # print("Domain: ", domain_names)
     
-        print("Loading CLIP Backbone: {}".format(self.cfg.MODEL.ODE.BACKBONE))
+        print("Loading CLIP Backbone: {}".format(self.cfg.MODEL.DIVE.BACKBONE))
         clip_model, _ = clip.load(
-            self.cfg.MODEL.ODE.BACKBONE,
+            self.cfg.MODEL.DIVE.BACKBONE,
             device=self.device,
             download_root=os.path.abspath(os.path.expanduser("data")),
         )
 
-        print("Building ODE Model")
+        print("Building DIVE Model")
         self.model = CustomCLIP(
             self.cfg, self.data_manager.dataset.class_names, clip_model
         )
@@ -184,7 +184,7 @@ class ODE(Trainer):
 
         # Encapsulate the three operations of optimize, simplify the process by just use the model, don't have to perform the three operations in turn
         self.model_registeration(
-            "ode",
+            "dive",
             self.model.adapters,
             self.optimizer,
             self.lr_scheduler,
@@ -205,7 +205,7 @@ class ODE(Trainer):
                     domain_loss = -0.1 * F.cross_entropy(domain_output, class_label)
                 loss_by_domain[i] = loss_by_domain[i] + domain_loss
         loss_by_domain = loss_by_domain.mean()
-        self.model_backward_and_update(loss_by_domain, model_names="ode")
+        self.model_backward_and_update(loss_by_domain, model_names="dive")
 
         loss_summary = {
             "loss": loss_by_domain.item(),

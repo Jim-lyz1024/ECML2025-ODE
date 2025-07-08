@@ -29,7 +29,7 @@ TRAIN:
   PRINT_FREQ: 5
 
 MODEL:
-  NAME: ODE
-  ODE:
+  NAME: DIVE
+  DIVE:
     # BACKBONE: "RN50"
     BACKBONE: "ViT-B/32"

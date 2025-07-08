@@ -1,8 +1,8 @@
 # Domain-Specific Knowledge through Domain Description for Generalization
-![ODE_framework](ODE_framework.jpg)
+![DIVE_Framework](DIVE_Framework.png)
 
 ## Abstract
-Most domain generalization methods focus on learning domain-invariant knowledge from source domains, neglecting the value of domain-specific knowledge, which, though unique to each source domain, can also improve the model's generalizability to unseen domains. To fill this gap, we propose the dOmain Description-guided Experts (ODE) framework, which leverages domain description to guide the utilization of domain-specific knowledge during both training and testing phases. Specifically, the domain descriptions are formulated as prompts incorporating domain names. During training, ODE constructs multiple domain experts, each specializing in a specific source domain. These domain experts leverage domain descriptions to facilitate the learning of domain-specific knowledge through text-image contrastive learning. By sharing a frozen, pretrained backbone network while only training the domain experts, ODE preserves domain-invariant knowledge while capturing unique domain knowledge. During testing, ODE computes the similarities between target and source domain descriptions to determine the relevance of each source domain to the unseen target domain. It then leverages domain-specific knowledge from the domain with the highest similarity to facilitate the testing. Moreover, we propose a strategy that allows ODE to integrate domain-specific knowledge from multiple domains, further improving generalization performance. Experiments across seven benchmark datasets demonstrate the effectiveness of ODE, setting a new benchmark of 95.5\% average accuracy on the PACS dataset.
+Most domain generalization methods focus on learning domain-invariant knowledge from source domains, neglecting the value of domain-specific knowledge, which, though unique to each source domain, can also improve the model's generalizability to unseen domains. To fill this gap, we propose the DomaIn description-guided Visual Experts (DIVE) framework, which leverages domain descriptions to guide the utilization of domain-specific knowledge during both training and testing phases. Specifically, the domain descriptions are formulated as prompts incorporating domain names. During training, DIVE constructs multiple domain experts, each specializing in a specific source domain. These domain experts leverage domain descriptions to facilitate the learning of domain-specific knowledge through text-image contrastive learning. By sharing a frozen, pretrained backbone network while only training the domain experts, DIVE preserves domain-invariant knowledge while capturing unique domain knowledge. During testing, DIVE computes the similarities between target and source domain descriptions to determine the relevance of each source domain to the unseen target domain. It then leverages domain-specific knowledge from the domain with the highest similarity to facilitate the testing. Moreover, we propose a strategy that allows DIVE to integrate domain-specific knowledge from multiple domains, further improving generalization performance. Experiments across seven benchmark datasets demonstrate the effectiveness of DIVE, setting a new benchmark of 95.5\% average accuracy on the PACS dataset.
 
 ## Baselines
 Domain Generalization approachs:
@@ -22,6 +22,8 @@ Domain Generalization approachs:
 VLMs-based approachs:
 - 2021 - CLIP-ZS - [Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/abs/2103.00020)
 - 2024 - CLIP-A - [CLIP-Adapter: Better Vision-Language Models with Feature Adapters](https://link.springer.com/article/10.1007/s11263-023-01891-x)
+- 2024 - SPG - [Soft Prompt Generation for Domain Generalization](https://link.springer.com/chapter/10.1007/978-3-031-72646-0_25)
+- 2024 - MMA - [MMA: Multi-Modal Adapter for Vision-Language Models](https://openaccess.thecvf.com/content/CVPR2024/html/Yang_MMA_Multi-Modal_Adapter_for_Vision-Language_Models_CVPR_2024_paper.html)
 
 ## Requirements
 Python 3.8.19
@@ -37,10 +39,10 @@ To run the code, use the following sample command:
 python train.py
             --gpu 1                                                 # Specify device
             --seed 134                                              # Random Seed
-            --output-dir output/ODE-RN50-NICO-autumn                # Output directory 
+            --output-dir output/DIVE-RN50-NICO-autumn                # Output directory 
             --dataset NICO                                          # Specify dataset
             --source-domains dim grass outdoor rock water           # Source Domains
             --target-domains autumn                                 # Target Domain
-            --model ODE                                             # Model for training
-            --model-config-file config/ode.yaml                     # Config file for model
+            --model DIVE                                             # Model for training
+            --model-config-file config/dive.yaml                     # Config file for model
 ```

@@ -7,7 +7,7 @@ from .rise import RISE  # noqa
 from .nkd import NKD  # noqa
 from .bokd import BOKD  # noqa
 from .dodge import DODGE # noqa
-from .ode import ODE  # noqa
+from .dive import DIVE  # noqa
 
 from .erm import ERM  # noqa
 from .crossgrad import CrossGrad  # noqa
